@@ -1,4 +1,4 @@
-# Tagged Unions for Go
+# Tagged Unions for Go [![Go Reference](https://pkg.go.dev/badge/github.com/splizard/tagged.svg)](https://pkg.go.dev/github.com/splizard/tagged)
 
 Always wanted to use tagged unions in Go? Thought it wasn't supported? well, it is!
 
