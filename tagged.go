@@ -238,7 +238,7 @@ func (union UnionMethods[Buf, Values]) values() Values {
 	var buffer Buf
 	var values Values
 	var rvalue = reflect.ValueOf(&values).Elem()
-	var direct = reflect.TypeOf(buffer).Kind() == reflect.Array
+	var direct = reflect.TypeFor[Buf]().Kind() == reflect.Array
 	for i := 0; i < rvalue.NumField(); i++ {
 		if i > math.MaxInt32 {
 			panic(fmt.Sprintf("too many fields in %T", values))
@@ -253,7 +253,7 @@ func (union UnionMethods[Buf, Values]) Interface() any {
 	var buffer Buf
 	var values Values
 	var rvalue = reflect.ValueOf(&values).Elem()
-	var direct = reflect.TypeOf(buffer).Kind() == reflect.Array
+	var direct = reflect.TypeFor[Buf]().Kind() == reflect.Array
 	i := union.tag
 	getter := rvalue.Field(int(i)).Addr().Interface().(gettable)
 	getter.load(int16(i), direct, unsafe.Sizeof(buffer), unsafe.Offsetof(union.buf))
